@@ -1,6 +1,7 @@
 // MODULES
 const { createTrainer } = require('../../queries/auth');
 const { generic, register } = require('../../errors/auth');
+const { encrypt } = require('../../utils/hash');
 const errors = require('../../errors/commons');
 
 module.exports = db => async (req, res, next) => {
@@ -11,7 +12,11 @@ module.exports = db => async (req, res, next) => {
   if (!email || !nickname || !password) return next(generic['empty']);
 
   // If everithing is ok, try insert trainer into DB with createTrainer function
-  const queryResult = await createTrainer(db)(email, nickname, password);
+  const queryResult = await createTrainer(db)({
+    email,
+    nickname,
+    password: await encrypt(password),
+  });
 
   // If ok property is false, return error with code property
   // If there's another kind of error, like some misspelled word, return 500 error

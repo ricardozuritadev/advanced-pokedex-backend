@@ -12,21 +12,23 @@ const getFullTrainer = db => async email => {
 };
 
 // createTrainer function
-const createTrainer = db => async (email, nickname, password) => {
-  const trainer = await getFullTrainer(db)(email);
+const createTrainer =
+  db =>
+  async ({ email, nickname, password }) => {
+    const trainer = await getFullTrainer(db)(email);
 
-  if (trainer.data) {
-    return {
-      ok: false,
-      code: 'duplication',
-    };
-  }
+    if (trainer.data) {
+      return {
+        ok: false,
+        code: 'duplication',
+      };
+    }
 
-  return await queryCatcher(
-    db.query,
-    'createTrainer'
-  )(insertTrainer(email, nickname, password));
-};
+    return await queryCatcher(
+      db.query,
+      'createTrainer'
+    )(insertTrainer(email, nickname, password));
+  };
 
 module.exports = {
   getFullTrainer,
