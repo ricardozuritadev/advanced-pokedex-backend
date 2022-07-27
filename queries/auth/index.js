@@ -11,6 +11,33 @@ const getFullTrainer = db => async email => {
   )(selectFullTrainer(email));
 };
 
+// getCorrectTrainer function
+const getCorrectTrainer =
+  db =>
+  async ({ nickname, compareFn }) => {
+    const trainer = await getFullTrainer(db)({ nickname });
+
+    if (!trainer.data) {
+      return {
+        ok: false,
+        code: 'unknown',
+      };
+    }
+
+    const isPasswordCorrect = await compareFn(trainer.data.password);
+
+    if (!isPasswordCorrect) {
+      return {
+        ok: false,
+        code: 'unknown',
+      };
+    }
+
+    return {
+      ok: true,
+    };
+  };
+
 // createTrainer function
 const createTrainer =
   db =>
@@ -32,5 +59,6 @@ const createTrainer =
 
 module.exports = {
   getFullTrainer,
+  getCorrectTrainer,
   createTrainer,
 };
