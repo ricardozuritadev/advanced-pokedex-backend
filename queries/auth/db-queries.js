@@ -1,13 +1,13 @@
 const { sql } = require('slonik');
 
-const selectFullTrainer = email => {
+const selectFullTrainer = ({ nickname }) => {
   return sql`
     SELECT * FROM trainers
-    WHERE email = ${email}
+    WHERE nickname = ${nickname}
   `;
 };
 
-const insertTrainer = (email, nickname, password) => {
+const insertTrainer = ({ email, nickname, password }) => {
   return sql`
     INSERT INTO trainers (
         email, nickname, password
