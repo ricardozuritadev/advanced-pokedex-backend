@@ -10,7 +10,7 @@ const app = express();
 // Body parser
 app.use(express.json());
 // Routes
-app.use();
+app.use('/api/v1', require('./services')(db));
 // Undefined routes
 app.use((_, __, next) => {
   next(errors[404]);
