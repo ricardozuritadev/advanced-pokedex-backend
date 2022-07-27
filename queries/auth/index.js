@@ -1,14 +1,13 @@
 // MODULES
-const { sql } = require('slonik');
-const { queryCatcher } = require('../utils');
 const { selectFullTrainer, insertTrainer } = require('./db-queries');
+const { queryCatcher } = require('../utils');
 
 // getFullTrainer function
-const getFullTrainer = db => async email => {
+const getFullTrainer = db => async nickname => {
   return await queryCatcher(
     db.maybeOne,
     'getFullTrainer'
-  )(selectFullTrainer(email));
+  )(selectFullTrainer(nickname));
 };
 
 // getCorrectTrainer function
@@ -35,6 +34,7 @@ const getCorrectTrainer =
 
     return {
       ok: true,
+      data: { nickname: trainer.data.nickname },
     };
   };
 
@@ -42,7 +42,7 @@ const getCorrectTrainer =
 const createTrainer =
   db =>
   async ({ email, nickname, password }) => {
-    const trainer = await getFullTrainer(db)(email);
+    const trainer = await getFullTrainer(db)(nickname);
 
     if (trainer.data) {
       return {
