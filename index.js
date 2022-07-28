@@ -26,6 +26,7 @@ app.use(({ statusCode, error }, _, res, __) => {
 });
 
 // SERVER CONECTION
-app.listen(process.env.PORT || 5000, () => {
-  console.log(`> Listening at: ${process.env.PORT || 5000}`);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`> Listening at: ${PORT}`);
 });
