@@ -1,6 +1,8 @@
 // MODULES
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
+const options = require('./configs/cors');
 const cookieParser = require('cookie-parser');
 const db = require('./configs/db');
 const errors = require('./errors/commons');
@@ -8,7 +10,8 @@ const errors = require('./errors/commons');
 const app = express();
 
 // MIDDLEWARES
-// Body parser & cookie parser
+// Body parser, cookie parser & cors
+app.use(cors(options));
 app.use(express.json());
 app.use(cookieParser());
 // Routes
