@@ -3,12 +3,14 @@ const { selectFullTrainer, insertTrainer } = require('./db-queries');
 const { queryCatcher } = require('../utils');
 
 // getFullTrainer function
-const getFullTrainer = db => async nickname => {
-  return await queryCatcher(
-    db.maybeOne,
-    'getFullTrainer'
-  )(selectFullTrainer(nickname));
-};
+const getFullTrainer =
+  db =>
+  async ({ nickname }) => {
+    return await queryCatcher(
+      db.maybeOne,
+      'getFullTrainer'
+    )(selectFullTrainer({ nickname }));
+  };
 
 // getCorrectTrainer function
 const getCorrectTrainer =
@@ -42,7 +44,7 @@ const getCorrectTrainer =
 const createTrainer =
   db =>
   async ({ email, nickname, password }) => {
-    const trainer = await getFullTrainer(db)(nickname);
+    const trainer = await getFullTrainer(db)({ nickname });
 
     if (trainer.data) {
       return {
@@ -54,7 +56,7 @@ const createTrainer =
     return await queryCatcher(
       db.query,
       'createTrainer'
-    )(insertTrainer(email, nickname, password));
+    )(insertTrainer({ email, nickname, password }));
   };
 
 module.exports = {
