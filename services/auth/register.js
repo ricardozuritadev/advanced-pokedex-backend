@@ -1,15 +1,12 @@
 // MODULES
 const { createTrainer } = require('../../queries/auth');
-const { generic, register } = require('../../errors/auth');
+const { register } = require('../../errors/auth');
 const { encrypt } = require('../../utils/hash');
 const errors = require('../../errors/commons');
 
 module.exports = db => async (req, res, next) => {
   // Read data from body
   const { email, nickname, password } = req.body;
-
-  // If some field is missing, throw "empty" register error
-  if (!email || !nickname || !password) return next(generic['empty']);
 
   // If everithing is ok, try insert trainer into DB with createTrainer function
   const queryResult = await createTrainer(db)({
