@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS trainers (
     id SERIAL PRIMARY KEY,  
     email TEXT UNIQUE NOT NULL,
     nickname TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL  
+    password TEXT NOT NULL
 );
