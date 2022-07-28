@@ -8,9 +8,25 @@ const serialize = (res, payload) => {
   cookie.create(res, token);
 };
 
+// DESERIALIZE FUNCTION
+const deserialize = req => {
+  // Read cookie from request
+  const { access_token } = req.cookies;
+
+  // CHeck if JWT is valid
+  const payload = jwt.verify(access_token);
+
+  // If payload is false, return "unauthorized" error
+  if (!payload) return false;
+
+  // If payload is true, return payload
+  return payload;
+};
+
 module.exports = {
   hash,
   jwt,
   cookie,
   serialize,
+  deserialize,
 };
