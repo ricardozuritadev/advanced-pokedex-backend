@@ -1,14 +1,16 @@
 // MODULES
 require('dotenv').config();
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const db = require('./configs/db');
 const errors = require('./errors/commons');
 
 const app = express();
 
 // MIDDLEWARES
-// Body parser
+// Body parser & cookie parser
 app.use(express.json());
+app.use(cookieParser());
 // Routes
 app.use('/api/v1', require('./services')(db));
 // Undefined routes
