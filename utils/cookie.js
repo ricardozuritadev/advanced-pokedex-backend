@@ -1,3 +1,4 @@
+// create cookie function
 const create = (res, token, expTime = 300000) => {
   res.cookie('access_token', token, {
     expires: new Date(Date.now() + expTime),
@@ -6,6 +7,12 @@ const create = (res, token, expTime = 300000) => {
   });
 };
 
+// clear cookie function
+const clear = res => {
+  res.clearCookie('access_token');
+};
+
 module.exports = {
   create,
+  clear,
 };
