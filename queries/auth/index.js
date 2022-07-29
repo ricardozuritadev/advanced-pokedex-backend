@@ -43,7 +43,7 @@ const getCorrectTrainer =
 // createTrainer function
 const createTrainer =
   db =>
-  async ({ email, nickname, password }) => {
+  async ({ email, nickname, password, passwordConfirm }) => {
     const trainer = await getFullTrainer(db)({ nickname });
 
     if (trainer.data) {
@@ -56,7 +56,7 @@ const createTrainer =
     return await queryCatcher(
       db.query,
       'createTrainer'
-    )(insertTrainer({ email, nickname, password }));
+    )(insertTrainer({ email, nickname, password, passwordConfirm }));
   };
 
 module.exports = {

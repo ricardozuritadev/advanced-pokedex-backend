@@ -6,13 +6,14 @@ const errors = require('../../errors/commons');
 
 module.exports = db => async (req, res, next) => {
   // Read data from body
-  const { email, nickname, password } = req.body;
+  const { email, nickname, password, passwordConfirm } = req.body;
 
   // If everithing is ok, try insert trainer into DB with createTrainer function
   const queryResult = await createTrainer(db)({
     email,
     nickname,
     password: await hash.encrypt(password),
+    passwordConfirm: await hash.encrypt(passwordConfirm),
   });
 
   // If ok property is false, return error with code property
