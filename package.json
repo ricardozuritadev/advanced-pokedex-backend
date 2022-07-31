@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Authentication and authorization workflow to register pokémon trainers",
   "main": "index.js",
+  "engines": {
+    "node": "16.15.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
