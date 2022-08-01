@@ -11,7 +11,7 @@ const app = express();
 
 // MIDDLEWARES
 // Body parser, cookie parser & cors
-app.use(cors(options));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 // Routes
@@ -24,7 +24,7 @@ app.use((_, __, next) => {
 app.use(({ statusCode, error }, _, res, __) => {
   res.status(statusCode).json({
     success: false,
-    message: error.message,
+    message: error,
   });
 });
 
