@@ -22,7 +22,7 @@ app.use((_, __, next) => {
 });
 // Error middleware
 app.use(({ statusCode, error }, _, res, __) => {
-  res.status(statusCode).json({
+  res.status(404).json({
     success: false,
     message: error,
   });
