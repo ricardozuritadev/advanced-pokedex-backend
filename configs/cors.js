@@ -1,4 +1,7 @@
-const whitelist = ['http://localhost:3000'];
+const whitelist = [
+  'https://advanced-pokedex-backend.onrender.com/',
+  'http://localhost:3000',
+];
 
 module.exports = {
   origin: (origin, callback) => {
