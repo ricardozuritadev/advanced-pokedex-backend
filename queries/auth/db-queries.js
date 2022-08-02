@@ -7,12 +7,18 @@ const selectFullTrainer = ({ nickname }) => {
   `;
 };
 
-const insertTrainer = ({ email, nickname, password, passwordConfirm }) => {
+const insertTrainer = ({
+  email,
+  nickname,
+  gendre,
+  password,
+  passwordConfirm,
+}) => {
   return sql`
     INSERT INTO trainers (
-        email, nickname, password, password_confirm
+        email, nickname, gendre, password, password_confirm
     ) VALUES (
-        ${email}, ${nickname}, ${password}, ${passwordConfirm}
+        ${email}, ${nickname}, ${gendre}, ${password}, ${passwordConfirm}
     )
   `;
 };
