@@ -11,7 +11,7 @@ const app = express();
 
 // MIDDLEWARES
 // Body parser, cookie parser & cors
-app.use(cors(options));
+// app.use(cors(options));
 app.use(express.json());
 app.use(cookieParser());
 // Routes
