@@ -4,23 +4,18 @@
 //  'http://localhost:3000',
 //];
 
-// const whitelist = [
-//   'https://advanced-pokedex-frontend.vercel.app/',
-// ];
+const whitelist = ['https://advanced-pokedex-frontend.vercel.app/'];
 
-// module.exports = {
-//   origin: (origin, callback) => {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error());
-//     }
-//   },
-//   credentials: true,
-// };
+// origin: (origin, callback) => {
+//   if (whitelist.indexOf(origin) !== -1) {
+//     callback(null, true);
+//   } else {
+//     callback(new Error());
+//   }
+// },
 
 module.exports = {
-  origin: 'https://advanced-pokedex-frontend.vercel.app/',
+  origin: '*',
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
