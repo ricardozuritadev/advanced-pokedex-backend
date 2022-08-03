@@ -1,7 +1,11 @@
+//const whitelist = [
+//  'https://advanced-pokedex-backend.onrender.com/',
+//  'https://advanced-pokedex-frontend.vercel.app/',
+//  'http://localhost:3000',
+//];
+
 const whitelist = [
-  'https://advanced-pokedex-backend.onrender.com/',
   'https://advanced-pokedex-frontend.vercel.app/',
-  'http://localhost:3000',
 ];
 
 module.exports = {
