@@ -4,7 +4,7 @@ const create = (res, token, expTime = 300000) => {
     expires: new Date(Date.now() + expTime),
     secure: true,
     httpOnly: true,
-    sameSite: false,
+    sameSite: 'none',
   });
 };
 
